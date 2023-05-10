@@ -50,8 +50,7 @@ async def autoapprove(client: app, message: Message):
     # Check if message.from_user.mention and message.chat.title are not None
     if message.from_user.mention is not None and message.chat.title is not None:
         await client.send_message(
-            chat_id=message.chat.id,
-            text="**Hello {mention}!\nWelcome To {title}\n\n__Powered By: @MovieMalonie**".format(
+                text="**Hello {mention}!\nWelcome To {title}\n\n__Powered By: @MovieMalonie**".format(
                 mention=message.from_user.mention,
                 title=message.chat.title
             )
