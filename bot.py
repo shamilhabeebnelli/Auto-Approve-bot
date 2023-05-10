@@ -29,20 +29,18 @@ gif = [
 
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Main process ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 @app.on_chat_join_request(filters.group | filters.channel & ~filters.private)
-async def approve(_, m : Message):
-    op = m.chat
-    kk = m.from_user
-    try:
-        add_group(m.chat.id)
-        await app.approve_chat_join_request(op.id, kk.id)
-        await app.reply_text(kk.id,"**Hello {}!\nWelcome To {}\n\n__Powered By : @MovieMalonie**".format(m.from_user.mention, m.chat.title))
-        add_user(kk.id)
-    except errors.PeerIdInvalid as e:
-        print("user isn't start bot(means group)")
-    except Exception as err:
-        print(str(err))    
+async def autoapprove(client: app, message: Message):
+    chat=message.chat # Chat
+    user=message.from_user # User
+    print(f"{user.first_name} 𝙹𝙾𝙸𝙽𝙴𝙳 ⚡") # Logs
+    add_group(message.chat.id)
+    await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
+    await client.send_message(chat_id=chat.id, text="**Hello {}!\nWelcome To {}\n\n__Powered By : @MovieMalonie**".format(mention=user.mention, title=chat.title))       
+    add_user(message.from_user.id)
+
+
+
  
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Start ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
