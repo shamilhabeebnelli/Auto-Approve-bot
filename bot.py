@@ -29,15 +29,36 @@ gif = [
 
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Main process ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-@app.on_chat_join_request(filters.group | filters.channel & ~filters.private)
-async def autoapprove(client: app, message: Message):
-    chat=message.chat # Chat
+##@app.on_chat_join_request(filters.group | filters.channel & ~filters.private)
+##async def autoapprove(client: app, message: Message):
+    '''chat=message.chat # Chat
     user=message.from_user # User
     print(f"{user.first_name} 𝙹𝙾𝙸𝙽𝙴𝙳 ⚡") # Logs
     add_group(message.chat.id)
     await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
     await client.send_message(chat_id=message.chat.id, text="**Hello {}!\nWelcome To {}\n\n__Powered By : @MovieMalonie**".format(mention=message.from_user.mention, title=message.chat.title))       
+    add_user(message.from_user.id)'''
+    
+@app.on_chat_join_request(filters.group | filters.channel & ~filters.private)
+async def autoapprove(client: app, message: Message):
+    chat = message.chat  # Chat
+    user = message.from_user  # User
+    print(f"{user.first_name} 𝙹𝙾𝙸𝙽𝙴𝙳 ⚡")  # Logs
+    add_group(message.chat.id)
+    await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
+    
+    # Check if message.from_user.mention and message.chat.title are not None
+    if message.from_user.mention is not None and message.chat.title is not None:
+        await client.send_message(
+            chat_id=message.chat.id,
+            text="**Hello {}!\nWelcome To {}\n\n__Powered By : @MovieMalonie**".format(
+                mention=message.from_user.mention,
+                title=message.chat.title
+            )
+        )
+    
     add_user(message.from_user.id)
+
 
 
 
