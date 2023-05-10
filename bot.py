@@ -36,7 +36,7 @@ async def autoapprove(client: app, message: Message):
     print(f"{user.first_name} 𝙹𝙾𝙸𝙽𝙴𝙳 ⚡") # Logs
     add_group(message.chat.id)
     await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
-    await client.send_message(chat_id=chat.id, text="**Hello {}!\nWelcome To {}\n\n__Powered By : @MovieMalonie**".format(mention=user.mention, title=chat.title))       
+    await client.send_message(chat_id=message.chat.id, text="**Hello {}!\nWelcome To {}\n\n__Powered By : @MovieMalonie**".format(mention=message.from_user.mention, title=message.chat.title))       
     add_user(message.from_user.id)
 
 
