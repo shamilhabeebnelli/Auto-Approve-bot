@@ -74,7 +74,7 @@ async def op(_, m :Message):
             keyboard = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("➕ Add me to your Chat ➕", url="https://t.me/MMAutoApproveBot?startgroup")
+                        InlineKeyboardButton("➕ Add me to your Chat ➕", url="https://t.me/request_accepting_pro_bot?startgroup")
                     ]
                 ]
             )
@@ -85,7 +85,7 @@ async def op(_, m :Message):
             keyboar = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("Start me PM", url="https://t.me/MMApprovebot?start=start")
+                        InlineKeyboardButton("Start me PM", url="https://t.me/request_accepting_pro_bot?start=start")
                     ]
                 ]
             )
@@ -113,7 +113,7 @@ async def chk(_, cb : CallbackQuery):
             keyboard = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("➕ Add me to your Chat ➕", url="https://t.me/MMApproveBot?startgroup")
+                        InlineKeyboardButton("➕ Add me to your Chat ➕", url="https://t.me/request_accepting_pro_bot?startgroup")
                     ]
                 ]
             )
