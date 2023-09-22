@@ -3,8 +3,8 @@ from configs import cfg
 
 client = MongoClient(cfg.MONGO_URI)
 
-users = client['main']['userss']
-groups = client['main']['groupss']
+userss = client['main']['userss']
+groupss = client['main']['groupss']
 
 def alread(user_id):
         user = users.find_one({"user_id" : str(user_id)})
