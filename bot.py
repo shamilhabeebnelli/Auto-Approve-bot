@@ -2,7 +2,7 @@ from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, 
 from pyrogram import filters, Client, errors, enums
 from pyrogram.errors import UserNotParticipant
 from pyrogram.errors.exceptions.flood_420 import FloodWait
-from database import add_user, add_group, all_users, all_groups, users, remove_user
+from database import addu, addg, allu, allg, userss, remu
 from configs import cfg
 import random, asyncio
 
@@ -57,7 +57,7 @@ async def autoapprove(client: app, message: Message):
             )
         )
     
-    add_user(message.from_user.id)
+    addu(message.from_user.id)
 
 
 
@@ -78,7 +78,7 @@ async def op(_, m :Message):
                     ]
                 ]
             )
-            add_user(m.from_user.id)
+            addu(m.from_user.id)
             await m.reply_text("**Hello {}!\nI'm an auto approve Join Requests Bot.\nI can approve users in Groups/Channels.Add me to your chat and promote me to admin with add members permission.\n\n__Powerd By : @malikmumbai_bhai_malik_mumbai**".format(m.from_user.mention), reply_markup=keyboard)
     
         elif m.chat.type == enums.ChatType.GROUP or enums.ChatType.SUPERGROUP:
@@ -89,7 +89,7 @@ async def op(_, m :Message):
                     ]
                 ]
             )
-            add_group(m.chat.id)
+            addg(m.chat.id)
             await m.reply_text("**Hello {}!\nwrite me private for more details**".format(m.from_user.first_name), reply_markup=keyboar)
         print(m.from_user.first_name +" Is started Your Bot!")
 
@@ -117,7 +117,7 @@ async def chk(_, cb : CallbackQuery):
                     ]
                 ]
             )
-            add_user(cb.from_user.id)
+            addu(cb.from_user.id)
             await cb.message.edit("**Hello {}!\nI'm an auto approve Join Request Bot.\nI can approve users in Groups/Channels.Add me to your chat and promote me to admin with add members permission.\n\n__Powerd By : @malikmumbai_bhai_malik_mumbai**".format(cb.from_user.mention), reply_markup=keyboard, disable_web_page_preview=True)
         print(cb.from_user.first_name +" Is started Your Bot!")
     except UserNotParticipant:
@@ -127,8 +127,8 @@ async def chk(_, cb : CallbackQuery):
 
 @app.on_message(filters.command("users") & filters.user(cfg.SUDO))
 async def dbtool(_, m : Message):
-    xx = all_users()
-    x = all_groups()
+    xx = allu()
+    x = allg()
     tot = int(xx + x)
     await m.reply_text(text=f"""
 🍀 Chats Stats 🍀
@@ -140,7 +140,7 @@ async def dbtool(_, m : Message):
 
 @app.on_message(filters.command("broadcast") & filters.user(cfg.SUDO))
 async def bcast(_, m : Message):
-    allusers = users
+    allusers = userss
     lel = await m.reply_text("`⚡️ Processing...`")
     success = 0
     failed = 0
@@ -148,7 +148,7 @@ async def bcast(_, m : Message):
     blocked = 0
     for usrs in allusers.find():
         try:
-            userid = usrs["user_id"]
+            userid = usrs["uid"]
             #print(int(userid))
             if m.command[0] == "broadcast":
                 await m.reply_to_message.copy(int(userid))
@@ -159,7 +159,7 @@ async def bcast(_, m : Message):
                 await m.reply_to_message.copy(int(userid))
         except errors.InputUserDeactivated:
             deactivated +=1
-            remove_user(userid)
+            remu(userid)
         except errors.UserIsBlocked:
             blocked +=1
         except Exception as e:
@@ -172,7 +172,7 @@ async def bcast(_, m : Message):
 
 @app.on_message(filters.command("forcast") & filters.user(cfg.SUDO))
 async def fcast(_, m : Message):
-    allusers = users
+    allusers = userss
     lel = await m.reply_text("`⚡️ Processing...`")
     success = 0
     failed = 0
@@ -180,7 +180,7 @@ async def fcast(_, m : Message):
     blocked = 0
     for usrs in allusers.find():
         try:
-            userid = usrs["user_id"]
+            userid = usrs["uid"]
             #print(int(userid))
             if m.command[0] == "forcast":
                 await m.reply_to_message.forward(int(userid))
@@ -191,7 +191,7 @@ async def fcast(_, m : Message):
                 await m.reply_to_message.forward(int(userid))
         except errors.InputUserDeactivated:
             deactivated +=1
-            remove_user(userid)
+            remu(userid)
         except errors.UserIsBlocked:
             blocked +=1
         except Exception as e:
