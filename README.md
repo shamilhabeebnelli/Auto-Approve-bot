@@ -2,7 +2,7 @@
 👾 Hey I'll Accept telegram join requests. Easy to use and simple.
 
 ## 🚀 Demo Bot
-- [@SDAutoApproveBot](https://t.me/SDAutoApproveBot)
+- [@SDAutoApproveBot](https://t.me/SDAutoApprovi
 
 <h2>〽️ Deploy Me </h2> 
   
