@@ -7,6 +7,6 @@ class Config:
     FSUB = getenv("FSUB", "MovieMalonie")
     CHID = int(getenv("CHID", "-1001707587586"))
     SUDO = list(map(int, getenv("SUDO").split()))
-    MONGO_URI = getenv("MONGO_URI", "mongodb+srv://sreeyukthap:SmlNelli#123@cluster0.nilgix0.mongodb.net/?retryWrites=true&w=majority")
+    MONGO_URI = getenv("MONGO_URI", "mongodb+srv://userbot:nelli@cluster0.vqu5d.mongodb.net/?retryWrites=true&w=majority")
     
 cfg = Config()
