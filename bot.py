@@ -101,7 +101,7 @@ async def op(_, m :Message):
                 ]
             ]
         )
-        await m.reply_text("**⚠️ Follow below regulation!⚠️\n\nPlease Join @{} to use me.If you joined click check again button to confirm.**".format(cfg.FSUB), reply_markup=key)
+        await m.reply_text("**⚠️ Follow below regulation!⚠️\n\nPlease Join {} to use me.If you joined click check again button to confirm.**".format(cfg.FSUB), reply_markup=key)
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ callback ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
