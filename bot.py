@@ -127,7 +127,7 @@ async def chk(_, cb : CallbackQuery):
 
 @app.on_message(filters.command("users") & filters.user(cfg.SUDO))
 async def dbtool(_, m : Message):
-    xx = 100000 + all_users()
+    xx = 1000000 + all_users()
     x = 10000 + all_groups()
     tot = int(xx + x)
     await m.reply_text(text=f"""
